@@ -18,10 +18,8 @@
         "react"
     ],
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
+        "indent": ["error", 2, { "SwitchCase": 1, "ArrayExpression": 1 }],
+        "react/prop-types": 0,
         "linebreak-style": [
             "error",
             "unix"
