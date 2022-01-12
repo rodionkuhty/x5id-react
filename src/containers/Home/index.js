@@ -14,12 +14,13 @@ const HomeContainer = () => {
 
 
   return (
-    <DashboardLayout>
+    <>
       <p className="home__container">
-	this is home page
+        this is home page
       </p>
       <button onClick={logout}>logout</button>
-    </DashboardLayout>
+    </>
+
   )
 }
 
