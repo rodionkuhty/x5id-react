@@ -3,19 +3,21 @@ import {
   Navigate,
   Route
 } from 'react-router-dom'
-import Home from 'pages/Home'
 import Login from 'pages/Login'
 import PushAuth from 'pages/PushAuth'
 import AltOtpAuth from 'pages/AltOtpAuth'
+import PushAccessDenied from 'pages/PushAccessDenied'
+import AccessSuccessful from 'pages/AccessSuccessful'
 
 const Router = () => {
   return (
     <Routes>
       <Route path="/inputphonenumber" element={<Login />} />
-      <Route path="/" element={<Home />} />
       <Route path="/pushauth" element={<PushAuth />} />
       <Route path="/altotpauth" element={<AltOtpAuth />} />
-      <Route render={() => <Navigate to="/" />} />
+      <Route path="/pushaccessdenied" element={<PushAccessDenied />} />
+      <Route path="/accesssuccessful" element={<AccessSuccessful />} />
+      <Route path="" element={<Navigate to="/inputphonenumber" />} />
     </Routes>
   )
 }
