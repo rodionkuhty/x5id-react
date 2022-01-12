@@ -1,28 +1,60 @@
-import React, { useState, createContext } from "react"
-import { fakeAuthProvider } from "utils/auth"
+import React, { useState, createContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import cookies from 'js-cookie'
+import jwt_decode from 'jwt-decode'
 
-let AuthContext = createContext(null)
+export const AuthContext = createContext(null)
 
-function AuthProvider({ children }) {
+const AuthProvider = ({ children }) => {
+  const auth = useProvideAuth()
+
+  return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
+}
+
+const useProvideAuth = () => {
   const [user, setUser] = useState(null)
+  const navigate = useNavigate()
 
-  const signin = (newUser, callback) => {
-    return fakeAuthProvider.signin(() => {
-      setUser(newUser)
-      callback()
-    })
+  // useEffect(() => {
+  //   if (!cookies.get('user')) {
+  //     navigate('/inputphonenumber')
+  //   }
+  // }, [cookies.get('user')])
+
+  const checkToken = () => {
+
   }
 
-  const signout = (callback) => {
-    return fakeAuthProvider.signout(() => {
-      setUser(null)
-      callback()
-    })
+  const refreshToken = async () => {
+    if (!checkToken()) {
+      // await fetch('whatever')
+    }
   }
 
-  const value = { user, signin, signout }
+  const signIn = (newUser, callback) => {
+    if (newUser) {
+      setUser(user)
+      cookies.set('user', JSON.stringify(newUser))
+      navigate('/')
+      if (callback) {
+        callback()
+      }
+    }
+  }
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+  const signOut = callback => {
+    cookies.remove('user')
+    navigate('/login')
+    if (callback) {
+      callback()
+    }
+  }
+
+  return {
+    user,
+    signIn,
+    signOut
+  }
 }
 
 export default AuthProvider
