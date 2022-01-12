@@ -1,10 +1,10 @@
 import DashboardLayout from 'layout/DashboardLayout'
-
+import AltOtpAuthContainer from 'containers/AltOtpAuth'
 
 const AltOtpAuth = () => {
   return (
     <DashboardLayout>
-      <p>xdcsdf</p>
+      <AltOtpAuthContainer/>
     </DashboardLayout>
   )
 }

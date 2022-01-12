@@ -1,14 +1,12 @@
-import { Form, Button } from 'antd'
-import { useAuth } from 'hooks/useAuth'
+import { Card, Form, Button } from 'antd'
 import MaskedInput from 'antd-mask-input'
-import 'antd/dist/antd.css'
 import './styles.css'
 
-const AuthContainer = () => {
-  const { signIn } = useAuth()
+const AltOtpAuthContainer = () => {
+
   const onFinish = values => {
     // signIn(values)
-    console.log(values, 'this is values')
+    console.log(values.target.value, 'this is values')
   }
 
   const onFinishFailed = errorInfo => {
@@ -16,13 +14,11 @@ const AuthContainer = () => {
   }
 
   return (
-    <div className="auth__container">
-      <div className="auth__form">
-        <div className="auth__title">
-          Для входа в сервис, введите:
-        </div>
+    <div className="altotpauth__container">
+      <Card>
+        <p>Для входа в сервис, введите OTP:</p>
         <Form
-          name="basic"
+          name="otp"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 24 }}
           initialValues={{ remember: true }}
@@ -37,21 +33,17 @@ const AuthContainer = () => {
             style={{ width: '100%' }}
           >
             <MaskedInput
-              placeholder="+7 (xxx)-xxx-xx-xx"
-              mask="+7 (111)-111-11-11"
+              placeholder="xxxxxx"
+              mask="111111"
               allowClear={true}
+              onChange={e => onFinish(e)}
+
             />
           </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="default" htmlType="submit" disabled={false}>
-            Продолжить
-            </Button>
-          </Form.Item>
         </Form>
-      </div>
+      </Card>
     </div>
   )
 }
 
-
-export default AuthContainer
+export default AltOtpAuthContainer

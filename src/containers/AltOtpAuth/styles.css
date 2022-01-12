@@ -1,0 +1,8 @@
+.altotpauth__container {
+    display: flex;
+    justify-content: center;
+}
+
+.ant-input::placeholder {
+    text-align: center;
+}
