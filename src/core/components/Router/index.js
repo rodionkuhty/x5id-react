@@ -3,7 +3,7 @@ import {
   Navigate,
   Route
 } from 'react-router-dom'
-import Login from 'pages/Login'
+import InputPhoneNumber from 'pages/InputPhoneNumber'
 import PushAuth from 'pages/PushAuth'
 import AltOtpAuth from 'pages/AltOtpAuth'
 import OtpAccessDenied from 'pages/OtpAccessDenied'
@@ -13,7 +13,7 @@ import AccessSuccessful from 'pages/AccessSuccessful'
 const Router = () => {
   return (
     <Routes>
-      <Route path="/inputphonenumber" element={<Login />} />
+      <Route path="/inputphonenumber" element={<InputPhoneNumber />} />
       <Route path="/pushauth" element={<PushAuth />} />
       <Route path="/altotpauth" element={<AltOtpAuth />} />
       <Route path="/otpaccessdenied" element={<OtpAccessDenied />} />

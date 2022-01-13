@@ -7,7 +7,7 @@ const DashboardLayout = ({ children }) => {
   return (
     <div className="layout__container">
       <div className="layout__logo">
-        <Logo width="400px" height="400px" />
+        <Logo width="300px" height="300px" />
       </div>
       {children}
     </div>

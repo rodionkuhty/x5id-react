@@ -1,7 +1,7 @@
-import React, { useState, createContext, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, {createContext, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import cookies from 'js-cookie'
-import jwt_decode from 'jwt-decode'
+import {routes} from 'constants/routes'
 
 export const AuthContext = createContext(null)
 
@@ -13,6 +13,7 @@ const AuthProvider = ({ children }) => {
 
 const useProvideAuth = () => {
   const [user, setUser] = useState(null)
+  const [requestStatus, setRequestStatus] = useState('loading')
   const navigate = useNavigate()
 
   // useEffect(() => {
@@ -21,30 +22,28 @@ const useProvideAuth = () => {
   //   }
   // }, [cookies.get('user')])
 
-  const checkToken = () => {
-
-  }
-
-  const refreshToken = async () => {
-    if (!checkToken()) {
-      // await fetch('whatever')
-    }
-  }
-
   const signIn = (newUser, callback) => {
     if (newUser) {
       setUser(user)
       cookies.set('user', JSON.stringify(newUser))
-      navigate('/')
+      setTimeout(() => {
+        navigate(routes.pushAuth)
+      }, 2000)
       if (callback) {
         callback()
       }
     }
   }
 
+
+
+  const sendOtp = () => {
+    return Math.random() > .5
+  }
+
   const signOut = callback => {
     cookies.remove('user')
-    navigate('/login')
+    navigate(routes.inputPhoneNumber)
     if (callback) {
       callback()
     }
@@ -53,7 +52,8 @@ const useProvideAuth = () => {
   return {
     user,
     signIn,
-    signOut
+    signOut,
+    sendOtp
   }
 }
 

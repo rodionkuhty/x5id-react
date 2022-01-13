@@ -5,7 +5,7 @@ import './styles.css'
 const PushAuthContainer = () => {
   return (
     <div className="pushauth__container">
-      <Card title="x5id" style={{ width: 500 }} hoverable>
+      <Card title="x5id" >
         <div className="pushauth__title">
           Откройте приложение X5.Auth и нажмите «Принять»
         </div>
